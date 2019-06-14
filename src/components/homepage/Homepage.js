@@ -1,9 +1,13 @@
 import React from 'react'
 
+import Nav from './nav/Nav'
+
  const Homepage = () => {
   return (
+    
     <div>
-      <h1>This is the Homepage</h1>
+    <Nav/>
+      <h3>This is the Homepage</h3>
     </div>
   )
 }
