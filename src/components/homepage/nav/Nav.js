@@ -1,16 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Modal from 'react-modal';
 
 import './nav.css';
 
 const Nav = () => {
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <a className="navbar-brand" href="#">
-        Navbar
+        WordList
       </a>
       
 
-    
         <div className="collapse navbar-collapse " id="navbarSupportedContent">
 
           <ul style={{width: '100%'}} className="navbar-nav mr-auto d-flex justify-content-end">
@@ -24,7 +25,7 @@ const Nav = () => {
 
             <li className="nav-item">
               <a className="nav-link" href="#">
-                <button type="button" class="btn btn-danger">
+                <button type="button" className="btn btn-danger">
                   Signup
                 </button>
               </a>
