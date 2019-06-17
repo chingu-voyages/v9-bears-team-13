@@ -1,0 +1,91 @@
+.Modal {
+  position: absolute;
+  min-width: 20rem;
+  max-width: 50rem;
+  outline: none;
+  text-align: center;
+  background-color: #e9e9e9;
+}
+
+/* .modal {
+  min-width: 30rem;
+  min-height: 25em;
+  padding: 20px;
+  background: #343A40;
+  display: flex;
+  flex-direction: column;
+} */
+
+.btn-teal {
+  color: white;
+  background-color: #5bcfc6;
+}
+
+.btn-teal:hover {
+  color: white;
+  background-color: #4fc1b8;
+}
+
+.modal-header-section {
+  border-radius: 0;
+  background-image: linear-gradient(to right, #5bcfc6 5%, #6dd1cc 55%);
+  text-align: right;
+  padding: 15px 0 15px 0;
+}
+
+.modal-header-section h2 {
+  text-align: center;
+  color: white;
+  vertical-align: middle;
+}
+
+.ReactModalPortal .ReactModal__Overlay--after-open {
+  opacity: 1;
+}
+
+.ReactModalPortal .ReactModal__Overlay--before-close {
+  opacity: 0;
+}
+
+.Overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.ReactModalPortal .ReactModal__Overlay {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  transition: opacity 50ms ease-in;
+}
+
+.ReactModal__Content {
+  opacity: 0;
+  transform: translateY(-80px);
+  transition: transform 350ms ease-out, opacity 600ms;
+}
+
+.ReactModal__Content.ReactModal__Content--after-open {
+  opacity: 1;
+  transform: translateY(0);
+  transition: transform 350ms ease-out, opacity 600ms;
+}
+
+.content {
+  padding: 2.5rem;
+}
+
+.close-button {
+  padding: 0;
+  margin-right: 10px;
+  /* margin-top: -20px; */
+  display: inline;
+}
+
+.curve-button {
+  border-radius: 5px;
+}
