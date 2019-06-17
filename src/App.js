@@ -1,7 +1,6 @@
 import React from 'react';
-import logo from './logo.svg';
 
-import Homepage from './components/Homepage';
+import Homepage from './components/homepage/Homepage';
 
 import './App.css';
 
