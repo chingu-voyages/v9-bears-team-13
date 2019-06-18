@@ -1,13 +1,19 @@
 import React, {useState} from 'react';
 import LoginModal from '../loginModal/LoginModal';
+import RegisterModal from '../registerModal/RegisterModal'
 import './nav.css';
 
 const Nav = () => {
-  const [isOpen, setOpen] = useState(false);
+  const [loginIsOpen, setLogin] = useState(false);
+  const [signupIsOpen, setSignup] = useState(false)
   const [loading, isLoading] = useState(false);
 
   const toggleLogin = () => {
-    setOpen(!isOpen);
+    setLogin(!loginIsOpen);
+  };
+
+  const toggleSignup = () => {
+    setSignup(!signupIsOpen);
   };
 
   return (
@@ -31,7 +37,7 @@ const Nav = () => {
 
             <li className="nav-item">
               <a className="nav-link" href="#">
-                <button type="button" className="btn curve-button  btn-danger">
+                <button onClick={()=>toggleSignup()} type="button" className="btn curve-button  btn-danger">
                   Signup
                 </button>
               </a>
@@ -41,8 +47,13 @@ const Nav = () => {
       </nav>
       <LoginModal
         isLoading={loading}
-        isOpen={isOpen}
+        isOpen={loginIsOpen}
         toggleLogin={toggleLogin}
+      />
+      <RegisterModal
+        isLoading={loading}
+        isOpen={signupIsOpen}
+        toggleSignup={toggleSignup}
       />
     </>
   );
