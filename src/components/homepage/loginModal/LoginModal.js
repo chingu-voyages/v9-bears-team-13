@@ -9,7 +9,7 @@ const LoginModal = (props) => {
       <ReactModal
         isOpen={props.isOpen}
         className="Modal"
-        contentLabel="Edit Profile"
+        contentLabel="Login"
        /* onRequestClose={props.handleRequestClose} */
         ariaHideApp={false}
         closeTimeoutMS={300}
