@@ -2,8 +2,16 @@ import React, { useState } from "react";
 import { Col, Table, Button } from "reactstrap";
 import { Link } from "react-router-dom";
 
+import WordTableRow from "./wordTableRow/WordTableRow";
+
 const WordListPage = () => {
   const [wordList, setWordList] = useState(sampleWordData);
+
+  const deleteWord = text => {
+    const newWordList = wordList.filter(word => word.text !== text);
+    setWordList(newWordList);
+  };
+
   return (
     <>
       <br />
@@ -31,17 +39,12 @@ const WordListPage = () => {
           <tbody>
             {wordList
               .sort((a, b) => a.timesSeen < b.timesSeen)
-              .map(word => (
-                <tr>
-                  <th>{word.text}</th>
-                  <th>{word.timesSeen}</th>
-                  <th>
-                    <Button>Edit</Button>
-                  </th>
-                  <th>
-                    <Button>Delete</Button>
-                  </th>
-                </tr>
+              .map(({ text, timesSeen }) => (
+                <WordTableRow
+                  text={text}
+                  timesSeen={timesSeen}
+                  deleteWord={deleteWord}
+                />
               ))}
           </tbody>
         </Table>
