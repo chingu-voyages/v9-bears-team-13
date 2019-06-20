@@ -3,6 +3,7 @@ import { Col, Table } from "reactstrap";
 import { Link } from "react-router-dom";
 
 import WordTableRow from "./wordTableRow/WordTableRow";
+import isEditModeOn from "./isEditModeOn";
 
 const WordListPage = () => {
   const [wordList, setWordList] = useState(sampleWordData);
@@ -17,6 +18,17 @@ const WordListPage = () => {
       if (word.id === id) {
         word.text = text;
         word.timesSeen = timesSeen;
+        return word;
+      }
+      return word;
+    });
+    setWordList(newWordList);
+  };
+
+  const toggleEdit = id => {
+    const newWordList = wordList.map(word => {
+      if (word.id === id) {
+        word.editMode = !word.editMode;
         return word;
       }
       return word;
@@ -49,16 +61,31 @@ const WordListPage = () => {
             </tr>
           </thead>
           <tbody>
-            {wordList
-              .sort((a, b) => a.timesSeen < b.timesSeen)
-              .map(({ id, text, timesSeen }) => (
-                <WordTableRow
-                  id={id}
-                  text={text}
-                  timesSeen={timesSeen}
-                  deleteWord={deleteWord}
-                />
-              ))}
+            {isEditModeOn(wordList)
+              ? wordList.map(({ id, text, timesSeen, editMode }) => (
+                  <WordTableRow
+                    id={id}
+                    text={text}
+                    timesSeen={timesSeen}
+                    deleteWord={deleteWord}
+                    toggleEdit={toggleEdit}
+                    editMode={editMode}
+                    updateWord={updateWord}
+                  />
+                ))
+              : wordList
+                  .sort((a, b) => a.timesSeen < b.timesSeen)
+                  .map(({ id, text, timesSeen, editMode }) => (
+                    <WordTableRow
+                      id={id}
+                      text={text}
+                      timesSeen={timesSeen}
+                      deleteWord={deleteWord}
+                      toggleEdit={toggleEdit}
+                      editMode={editMode}
+                      updateWord={updateWord}
+                    />
+                  ))}
           </tbody>
         </Table>
       </Col>
@@ -70,17 +97,20 @@ const sampleWordData = [
   {
     id: 0,
     text: "老子",
-    timesSeen: 3
+    timesSeen: 3,
+    editMode: false
   },
   {
     id: 1,
     text: "庄子",
-    timesSeen: 10
+    timesSeen: 10,
+    editMode: false
   },
   {
     id: 2,
     text: "孔子",
-    timesSeen: 2
+    timesSeen: 2,
+    editMode: false
   }
 ];
 

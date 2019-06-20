@@ -1,17 +1,9 @@
 import React from "react";
-import { Button } from "reactstrap";
+import ReadRow from "./readRow/ReadRow";
+import EditRow from "./editRow/EditRow";
 
-const WordTableRow = ({ id, text, timesSeen, deleteWord }) => (
-  <tr>
-    <th>{text}</th>
-    <th>{timesSeen}</th>
-    <th>
-      <Button>Edit</Button>
-    </th>
-    <th>
-      <Button onClick={() => deleteWord(id)}>Delete</Button>
-    </th>
-  </tr>
+const WordTableRow = ({ editMode, ...props }) => (
+  <>{editMode ? <EditRow {...props} /> : <ReadRow {...props} />}</>
 );
 
 export default WordTableRow;
