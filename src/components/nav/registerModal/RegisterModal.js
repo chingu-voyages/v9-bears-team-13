@@ -1,7 +1,7 @@
-import React from 'react';
-import ReactModal from 'react-modal';
+import React from "react";
+import ReactModal from "react-modal";
 
-const RegisterModal = (props) => {
+const RegisterModal = props => {
   return (
     <div>
       <ReactModal
@@ -10,7 +10,8 @@ const RegisterModal = (props) => {
         contentLabel="Sign Up"
         /* onRequestClose={props.handleRequestClose} */
         ariaHideApp={false}
-        closeTimeoutMS={300}>
+        closeTimeoutMS={300}
+      >
         <div className="modal-header-section">
           <button
             onClick={() => props.toggleSignup()}
@@ -54,12 +55,12 @@ const RegisterModal = (props) => {
             placeholder="Comfirm Password"
           />
 
-          <p style={{color: 'red'}}>
+          <p style={{ color: "red" }}>
             <em>{/* <small>{props.errorMsg}</small> */}</em>
           </p>
           <br />
           <button className="btn btn-teal mb-4">
-            Sign up{' '}
+            Sign up{" "}
             {/*props.isLoading &&
           <div className="spinner-border spinner-border-sm " role="status">
             <span className="sr-only">Loading...</span>

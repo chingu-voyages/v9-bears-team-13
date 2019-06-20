@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
-import LoginModal from './loginModal/LoginModal';
-import RegisterModal from './registerModal/RegisterModal'
-import './nav.css';
+import React, { useState } from "react";
+import LoginModal from "./loginModal/LoginModal";
+import RegisterModal from "./registerModal/RegisterModal";
+import "./nav.css";
 
 const Nav = () => {
   const [loginIsOpen, setLogin] = useState(false);
-  const [signupIsOpen, setSignup] = useState(false)
+  const [signupIsOpen, setSignup] = useState(false);
   const [loading, isLoading] = useState(false);
 
   const toggleLogin = () => {
@@ -25,11 +25,16 @@ const Nav = () => {
 
         <div className="collapse navbar-collapse " id="navbarSupportedContent">
           <ul
-            style={{width: '100%'}}
-            className="navbar-nav mr-auto d-flex justify-content-end">
+            style={{ width: "100%" }}
+            className="navbar-nav mr-auto d-flex justify-content-end"
+          >
             <li className="nav-item ">
               <a className="nav-link" href="#">
-                <button onClick={()=>toggleLogin()} type="button" className="btn curve-button  btn-primary">
+                <button
+                  onClick={() => toggleLogin()}
+                  type="button"
+                  className="btn curve-button  btn-primary"
+                >
                   Login
                 </button>
               </a>
@@ -37,7 +42,11 @@ const Nav = () => {
 
             <li className="nav-item">
               <a className="nav-link" href="#">
-                <button onClick={()=>toggleSignup()} type="button" className="btn curve-button  btn-danger">
+                <button
+                  onClick={() => toggleSignup()}
+                  type="button"
+                  className="btn curve-button  btn-danger"
+                >
                   Signup
                 </button>
               </a>
@@ -60,4 +69,3 @@ const Nav = () => {
 };
 
 export default Nav;
-

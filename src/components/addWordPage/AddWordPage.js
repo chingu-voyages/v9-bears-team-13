@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import Spaces from './spaces/Spaces';
-import AddWordForm from './addWordForm/AddWordForm';
+import Spaces from "./spaces/Spaces";
+import AddWordForm from "./addWordForm/AddWordForm";
 
 const AddWordPage = props => (
   <>

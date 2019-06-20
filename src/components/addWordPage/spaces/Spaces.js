@@ -1,14 +1,14 @@
-import React from 'react';
+import React from "react";
 
 const Spaces = () => (
   <div>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
   </div>
 );
 

@@ -1,12 +1,12 @@
-import React from 'react';
+import React from "react";
 
-import Homepage from './components/homepage/Homepage';
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Nav from './components/nav/Nav';
+import Homepage from "./components/homepage/Homepage";
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Nav from "./components/nav/Nav";
 
-import {Route} from 'react-router-dom';
-import AddWordPage from './components/addWordPage/AddWordPage';
+import { Route } from "react-router-dom";
+import AddWordPage from "./components/addWordPage/AddWordPage";
 
 function App() {
   return (
