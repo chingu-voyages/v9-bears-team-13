@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Col, Table, Button } from "reactstrap";
+import { Col, Table } from "reactstrap";
 import { Link } from "react-router-dom";
 
 import WordTableRow from "./wordTableRow/WordTableRow";
