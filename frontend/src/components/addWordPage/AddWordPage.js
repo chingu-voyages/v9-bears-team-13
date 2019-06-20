@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import Spaces from "./spaces/Spaces";
 import AddWordForm from "./addWordForm/AddWordForm";
