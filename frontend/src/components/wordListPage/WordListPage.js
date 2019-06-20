@@ -12,6 +12,18 @@ const WordListPage = () => {
     setWordList(newWordList);
   };
 
+  const updateWord = ({ id, text, timesSeen }) => {
+    const newWordList = wordList.map(word => {
+      if (word.id === id) {
+        word.text = text;
+        word.timesSeen = timesSeen;
+        return word;
+      }
+      return word;
+    });
+    setWordList(newWordList);
+  };
+
   return (
     <>
       <br />
