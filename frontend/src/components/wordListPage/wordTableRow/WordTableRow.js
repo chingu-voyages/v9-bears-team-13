@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "reactstrap";
 
-const WordTableRow = ({ text, timesSeen, deleteWord }) => (
+const WordTableRow = ({ id, text, timesSeen, deleteWord }) => (
   <tr>
     <th>{text}</th>
     <th>{timesSeen}</th>
@@ -9,7 +9,7 @@ const WordTableRow = ({ text, timesSeen, deleteWord }) => (
       <Button>Edit</Button>
     </th>
     <th>
-      <Button onClick={() => deleteWord(text)}>Delete</Button>
+      <Button onClick={() => deleteWord(id)}>Delete</Button>
     </th>
   </tr>
 );

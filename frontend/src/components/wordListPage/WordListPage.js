@@ -7,8 +7,8 @@ import WordTableRow from "./wordTableRow/WordTableRow";
 const WordListPage = () => {
   const [wordList, setWordList] = useState(sampleWordData);
 
-  const deleteWord = text => {
-    const newWordList = wordList.filter(word => word.text !== text);
+  const deleteWord = id => {
+    const newWordList = wordList.filter(word => word.id !== id);
     setWordList(newWordList);
   };
 
@@ -39,8 +39,9 @@ const WordListPage = () => {
           <tbody>
             {wordList
               .sort((a, b) => a.timesSeen < b.timesSeen)
-              .map(({ text, timesSeen }) => (
+              .map(({ id, text, timesSeen }) => (
                 <WordTableRow
+                  id={id}
                   text={text}
                   timesSeen={timesSeen}
                   deleteWord={deleteWord}
@@ -55,14 +56,17 @@ const WordListPage = () => {
 
 const sampleWordData = [
   {
+    id: 0,
     text: "老子",
     timesSeen: 3
   },
   {
+    id: 1,
     text: "庄子",
     timesSeen: 10
   },
   {
+    id: 2,
     text: "孔子",
     timesSeen: 2
   }
