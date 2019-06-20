@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Nav from './components/nav/Nav';
 
 import {Route} from 'react-router-dom';
+import AddWordPage from './components/addWordPage/AddWordPage';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       //you would render each route like below. All you have to do is first import the component, set the path you want e.g '/home' or '/addword' and pass the component as a prop.
       //all routes go below the Nav
       <Route exact path="/" component={Homepage} />
+      <Route path="/add-word" component={AddWordPage} />
     </div>
   );
 }
