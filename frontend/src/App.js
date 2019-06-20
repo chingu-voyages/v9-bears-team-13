@@ -7,6 +7,7 @@ import Nav from "./components/nav/Nav";
 
 import { Route } from "react-router-dom";
 import AddWordPage from "./components/addWordPage/AddWordPage";
+import WordListPage from "./components/wordListPage/WordListPage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           prop.   all routes go below the Nav*/}
       <Route exact path="/" component={Homepage} />
       <Route path="/add-word" component={AddWordPage} />
+      <Route path="/word-list" component={WordListPage} />
     </div>
   );
 }
