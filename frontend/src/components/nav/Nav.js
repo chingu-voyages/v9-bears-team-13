@@ -30,10 +30,12 @@ const Nav = () => {
   };
 
   const toggleLogin = () => {
+    clearFields();
     setLogin(!loginIsOpen);
   };
 
   const toggleSignup = () => {
+    clearFields();
     setSignup(!signupIsOpen);
   };
 
@@ -41,9 +43,27 @@ const Nav = () => {
     let obj = {
       username: username,
       email: email,
-      password1: "",
-      password2: ""
+      password1: password,
+      password2: confirmPassword
     };
+    console.log(obj);
+    axios
+      .post(
+        "https://bears-api.andrew-horn-portfolio.life/api/v1/rest-auth/registration/",
+        obj
+      )
+      .then(resp => {
+        console.log(resp);
+        clearFields();
+      })
+      .catch(err => console.log(err));
+  };
+
+  const clearFields = () => {
+    setUsername("");
+    setEmail("");
+    setPassword("");
+    setConfirmPassword("");
   };
 
   const handleLogin = () => {
@@ -54,7 +74,10 @@ const Nav = () => {
     };
     axios
       .post("/api/v1/rest-auth/login/", obj)
-      .then(resp => console.log(resp))
+      .then(resp => {
+        console.log(resp);
+        clearFields();
+      })
       .catch(err => console.log(err));
   };
 
@@ -126,6 +149,7 @@ const Nav = () => {
         updateEmail={updateEmail}
         updatePassword={updatePassword}
         updateComfirmPassword={updateComfirmPassword}
+        handleSignUp={handleSignUp}
       />
     </>
   );
