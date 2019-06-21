@@ -20,14 +20,14 @@ const RegisterModal = props => {
           >
             <i className="fas fa-times" />
           </button>
-          <h2 className="font-weight-light">Log In</h2>
+          <h2 className="font-weight-light">Sign Up</h2>
         </div>
         <div className="content">
           <input
             value={props.name}
             type="text"
             className="form-control"
-            /*  onChange={e => props.updateField ('email', e.target.value)} */
+            onChange={e => props.updateUsername(e.target.value)}
             placeholder="username"
           />
           <br />
@@ -35,7 +35,7 @@ const RegisterModal = props => {
             value={props.email}
             type="email"
             className="form-control"
-            /*  onChange={e => props.updateField ('email', e.target.value)} */
+            onChange={e => props.updateEmail(e.target.value)}
             placeholder="email"
           />
           <br />
@@ -43,15 +43,15 @@ const RegisterModal = props => {
             value={props.password}
             type="password"
             className="form-control"
-            /* onChange={e => props.updateField ('password', e.target.value)} */
+            onChange={e => props.updatePassword(e.target.value)}
             placeholder="Password"
           />
           <br />
           <input
-            value={props.password}
+            value={props.confirmPassword}
             type="password"
             className="form-control"
-            /* onChange={e => props.updateField ('password', e.target.value)} */
+            onChange={e => props.updateComfirmPassword(e.target.value)}
             placeholder="Comfirm Password"
           />
 
@@ -59,7 +59,10 @@ const RegisterModal = props => {
             <em>{/* <small>{props.errorMsg}</small> */}</em>
           </p>
           <br />
-          <button className="btn btn-teal mb-4">
+          <button
+            onClick={() => props.handleSignUp()}
+            className="btn btn-teal mb-4"
+          >
             Sign up{" "}
             {/*props.isLoading &&
           <div className="spinner-border spinner-border-sm " role="status">
