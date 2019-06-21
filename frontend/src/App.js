@@ -5,7 +5,7 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Nav from "./components/nav/Nav";
 
-import { Route } from "react-router-dom";
+import { PrivateRoute } from "./helpers/privateRoute";
 import AddWordPage from "./components/addWordPage/AddWordPage";
 import WordListPage from "./components/wordListPage/WordListPage";
 
@@ -17,9 +17,9 @@ function App() {
           do is first import the component, set the path you want 
           e.g '/home' or '/addword' and pass the component as a 
           prop.   all routes go below the Nav*/}
-      <Route exact path="/" component={Homepage} />
-      <Route path="/add-word" component={AddWordPage} />
-      <Route path="/word-list" component={WordListPage} />
+      <PrivateRoute exact path="/" component={Homepage} />
+      <PrivateRoute path="/add-word" component={AddWordPage} />
+      <PrivateRoute path="/word-list" component={WordListPage} />
     </div>
   );
 }
