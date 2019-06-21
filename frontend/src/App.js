@@ -1,4 +1,5 @@
 import React from "react";
+import { Route } from "react-router-dom";
 
 import Homepage from "./components/homepage/Homepage";
 import "./App.css";
@@ -17,7 +18,7 @@ function App() {
           do is first import the component, set the path you want 
           e.g '/home' or '/addword' and pass the component as a 
           prop.   all routes go below the Nav*/}
-      <PrivateRoute exact path="/" component={Homepage} />
+      <Route exact path="/" component={Homepage} />
       <PrivateRoute path="/add-word" component={AddWordPage} />
       <PrivateRoute path="/word-list" component={WordListPage} />
     </div>
