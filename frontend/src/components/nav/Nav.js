@@ -46,17 +46,24 @@ const Nav = () => {
       password1: password,
       password2: confirmPassword
     };
-    console.log(obj);
+    // console.log(obj);
     axios
       .post(
         "https://bears-api.andrew-horn-portfolio.life/api/v1/rest-auth/registration/",
         obj
       )
       .then(resp => {
-        console.log(resp);
+        // console.log(resp);
+        localStorage.setItem("authToken", resp.data.key);
         clearFields();
+        document.location.reload();
       })
       .catch(err => console.log(err));
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("authToken");
+    document.location.reload();
   };
 
   const clearFields = () => {
@@ -73,10 +80,14 @@ const Nav = () => {
       password: password
     };
     axios
-      .post("/api/v1/rest-auth/login/", obj)
+      .post(
+        "https://bears-api.andrew-horn-portfolio.life/api/v1/rest-auth/login/",
+        obj
+      )
       .then(resp => {
-        console.log(resp);
+        localStorage.setItem("authToken", resp.data.key);
         clearFields();
+        document.location.reload();
       })
       .catch(err => console.log(err));
   };
@@ -93,7 +104,7 @@ const Nav = () => {
             style={{ width: "100%" }}
             className="navbar-nav mr-auto d-flex justify-content-end"
           >
-            {localStorage.getItem("authToken") ? (
+            {!localStorage.getItem("authToken") ? (
               <>
                 {" "}
                 <li className="nav-item ">
@@ -120,7 +131,16 @@ const Nav = () => {
                 </li>
               </>
             ) : (
-              <p>jj</p>
+              <>
+                <p>Hi, {username}</p>
+                <button
+                  onClick={() => handleLogout()}
+                  type="button"
+                  className="btn curve-button  btn-danger"
+                >
+                  Logout
+                </button>
+              </>
             )}
           </ul>
         </div>
