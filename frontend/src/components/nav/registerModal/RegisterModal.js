@@ -56,18 +56,17 @@ const RegisterModal = props => {
           />
 
           <p style={{ color: "red" }}>
-            <em>{/* <small>{props.errorMsg}</small> */}</em>
+            <em>{<small>{props.errorMsg}</small>}</em>
           </p>
           <br />
           <button
             onClick={() => props.handleSignUp()}
             className="btn btn-teal mb-4"
           >
-            Sign up{" "}
-            {/*props.isLoading &&
-          <div className="spinner-border spinner-border-sm " role="status">
-            <span className="sr-only">Loading...</span>
-        </div>*/}
+            Sign up props.isLoading &&
+            <div className="spinner-border spinner-border-sm " role="status">
+              <span className="sr-only">Loading...</span>
+            </div>
           </button>
         </div>
       </ReactModal>
