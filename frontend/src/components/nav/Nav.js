@@ -2,16 +2,18 @@ import React, { useState } from "react";
 import LoginModal from "./loginModal/LoginModal";
 import RegisterModal from "./registerModal/RegisterModal";
 import axios from "axios";
+import { withRouter } from "react-router";
 import "./nav.css";
 
-const Nav = () => {
+const Nav = props => {
   const [loginIsOpen, setLogin] = useState(false);
   const [signupIsOpen, setSignup] = useState(false);
-  const [loading, isLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [errorMsg, setEerrorMsg] = useState("");
 
   const updateUsername = val => {
     setUsername(val);
@@ -40,6 +42,7 @@ const Nav = () => {
   };
 
   const handleSignUp = () => {
+    setLoading(true);
     let obj = {
       username: username,
       email: email,
@@ -56,9 +59,16 @@ const Nav = () => {
         // console.log(resp);
         localStorage.setItem("authToken", resp.data.key);
         clearFields();
+        setLoading(false);
         document.location.reload();
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err);
+        setTimeout(() => {
+          setEerrorMsg("Something went wrong, please try again");
+        }, 100);
+      });
+    setEerrorMsg("");
   };
 
   const handleLogout = () => {
@@ -71,9 +81,12 @@ const Nav = () => {
     setEmail("");
     setPassword("");
     setConfirmPassword("");
+    setLoading(false);
+    setEerrorMsg("");
   };
 
   const handleLogin = () => {
+    setLoading(true);
     let obj = {
       username: username,
       email: email,
@@ -87,15 +100,30 @@ const Nav = () => {
       .then(resp => {
         localStorage.setItem("authToken", resp.data.key);
         clearFields();
-        document.location.reload();
+        setLoading(false);
+        // document.location.reload();
+        setLogin(false);
+        props.history.push("/add-word");
+        console.log(props.history);
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err);
+
+        setEerrorMsg("Something went wrong, please try again");
+
+        setLoading("");
+        setTimeout(() => {
+          setEerrorMsg("");
+        }, 5000);
+      });
   };
+
+  const handleError = str => {};
 
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <a className="navbar-brand" href="#">
+        <a className="navbar-brand" href="#!">
           WordList
         </a>
 
@@ -108,7 +136,7 @@ const Nav = () => {
               <>
                 {" "}
                 <li className="nav-item ">
-                  <a className="nav-link" href="#">
+                  <a className="nav-link" href="#!">
                     <button
                       onClick={() => toggleLogin()}
                       type="button"
@@ -119,7 +147,7 @@ const Nav = () => {
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
+                  <a className="nav-link" href="#!">
                     <button
                       onClick={() => toggleSignup()}
                       type="button"
@@ -156,6 +184,7 @@ const Nav = () => {
         updateEmail={updateEmail}
         updatePassword={updatePassword}
         handleLogin={handleLogin}
+        errorMsg={errorMsg}
       />
       <RegisterModal
         isLoading={loading}
@@ -170,9 +199,10 @@ const Nav = () => {
         updatePassword={updatePassword}
         updateComfirmPassword={updateComfirmPassword}
         handleSignUp={handleSignUp}
+        errorMsg={errorMsg}
       />
     </>
   );
 };
 
-export default Nav;
+export default withRouter(Nav);
