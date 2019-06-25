@@ -60,15 +60,15 @@ const Nav = props => {
         localStorage.setItem("authToken", resp.data.key);
         clearFields();
         setLoading(false);
-        document.location.reload();
+        setLogin(false);
+        props.history.push("/add-word");
       })
       .catch(err => {
-        console.log(err);
+        setEerrorMsg("Something went wrong, please try again");
         setTimeout(() => {
-          setEerrorMsg("Something went wrong, please try again");
-        }, 100);
+          setEerrorMsg("");
+        }, 7000);
       });
-    setEerrorMsg("");
   };
 
   const handleLogout = () => {
@@ -104,17 +104,16 @@ const Nav = props => {
         // document.location.reload();
         setLogin(false);
         props.history.push("/add-word");
-        console.log(props.history);
+        //console.log(props.history);
       })
       .catch(err => {
-        console.log(err);
+        //  console.log(err);
 
         setEerrorMsg("Something went wrong, please try again");
 
-        setLoading("");
         setTimeout(() => {
           setEerrorMsg("");
-        }, 5000);
+        }, 7000);
       });
   };
 
