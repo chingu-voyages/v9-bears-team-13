@@ -48,7 +48,7 @@ const LoginModal = props => {
           />
 
           <p style={{ color: "red" }}>
-            <em>{/* <small>{props.errorMsg}</small> */}</em>
+            <em>{<small>{props.errorMsg}</small>}</em>
           </p>
           <br />
           <button
@@ -56,10 +56,11 @@ const LoginModal = props => {
             className="btn btn-teal mb-4"
           >
             Log in{" "}
-            {/*props.isLoading &&
-          <div className="spinner-border spinner-border-sm " role="status">
-            <span className="sr-only">Loading...</span>
-        </div>*/}
+            {props.isLoading && (
+              <div className="spinner-border spinner-border-sm " role="status">
+                <span className="sr-only">Loading...</span>
+              </div>
+            )}
           </button>
         </div>
       </ReactModal>
