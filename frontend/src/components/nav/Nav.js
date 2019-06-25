@@ -67,6 +67,7 @@ const Nav = props => {
         setEerrorMsg("Something went wrong, please try again");
         setTimeout(() => {
           setEerrorMsg("");
+          setLoading(false);
         }, 7000);
       });
   };
@@ -113,6 +114,7 @@ const Nav = props => {
 
         setTimeout(() => {
           setEerrorMsg("");
+          setLoading(false);
         }, 7000);
       });
   };
