@@ -1,12 +1,27 @@
 import React, { useState } from "react";
 import { Col, Form, Input, Button } from "reactstrap";
+import axios from "axios";
+
+/*
+  ok, what does this need to do?
+  Well, it needs to add the word to the database. So. That requires
+  a POST request to the Django server. That's it, no? Something like
+  that?
+
+  1. Check the Django docs for the POST request syntax.
+  2. 
+*/
 
 const AddWordForm = () => {
   const [word, setWord] = useState("");
 
-  const onSubmitWord = e => {
+  const onSubmitWord = async e => {
     e.preventDefault();
-    console.log(word);
+    try {
+      axios.post("/api/v1", {});
+    } catch (e) {
+      console.log(e);
+    }
     setWord("");
   };
   return (
