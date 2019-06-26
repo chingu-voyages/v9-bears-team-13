@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import LoginModal from "./loginModal/LoginModal";
 import RegisterModal from "./registerModal/RegisterModal";
 import axios from "axios";
 import { withRouter } from "react-router";
+import { NameContext } from "../../App";
 import "./nav.css";
 
 const Nav = props => {
@@ -14,6 +15,8 @@ const Nav = props => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errorMsg, setEerrorMsg] = useState("");
+
+  const value = useContext(NameContext);
 
   const updateUsername = val => {
     setUsername(val);
@@ -64,17 +67,19 @@ const Nav = props => {
         props.history.push("/add-word");
       })
       .catch(err => {
-        setEerrorMsg("Something went wrong, please try again");
+        setEerrorMsg(
+          "Something went wrong, please comfirm your email and password then try again"
+        );
+        setLoading(false);
         setTimeout(() => {
           setEerrorMsg("");
-          setLoading(false);
-        }, 7000);
+        }, 10000);
       });
   };
 
   const handleLogout = () => {
     localStorage.removeItem("authToken");
-    document.location.reload();
+    props.history.push("/");
   };
 
   const clearFields = () => {
@@ -110,16 +115,16 @@ const Nav = props => {
       .catch(err => {
         //  console.log(err);
 
-        setEerrorMsg("Something went wrong, please try again");
+        setEerrorMsg(
+          "Something went wrong, please comfirm your email and password then try again"
+        );
+        setLoading(false);
 
         setTimeout(() => {
           setEerrorMsg("");
-          setLoading(false);
-        }, 7000);
+        }, 10000);
       });
   };
-
-  const handleError = str => {};
 
   return (
     <>
@@ -161,7 +166,7 @@ const Nav = props => {
               </>
             ) : (
               <>
-                <p>Hi, {username}</p>
+                <p>Hi, {props.name}</p>
                 <button
                   onClick={() => handleLogout()}
                   type="button"
@@ -206,4 +211,4 @@ const Nav = props => {
   );
 };
 
-export default withRouter(Nav);
+export default React.memo(withRouter(Nav));
