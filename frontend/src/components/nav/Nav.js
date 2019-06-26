@@ -78,6 +78,12 @@ const Nav = props => {
   };
 
   const handleLogout = () => {
+    axios
+      .get(
+        "https://bears-api.andrew-horn-portfolio.life/api/v1/rest-auth/logout/"
+      )
+      .then(resp => console.log(resp))
+      .catch(err => console.log(err));
     localStorage.removeItem("authToken");
     props.history.push("/");
   };

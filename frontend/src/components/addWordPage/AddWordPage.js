@@ -9,7 +9,7 @@ const AddWordPage = props => {
     //props.getUser()
     props.getUser();
     // console.log(value)
-  }, []);
+  });
 
   return (
     <>

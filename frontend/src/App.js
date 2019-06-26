@@ -16,11 +16,23 @@ export const NameContext = React.createContext();
 
 function App() {
   const [name, updateName] = useState("");
+  var config = {
+    headers: { Authorization: `bearer ${localStorage.getItem("authToken")}` }
+  };
 
   const getUser = () => {
+    var bodyParameters = {
+      key: "value"
+    };
+    console.log(config);
     axios
       .get(
-        "https://bears-api.andrew-horn-portfolio.life/api/v1/rest-auth/user/"
+        "https://bears-api.andrew-horn-portfolio.life/api/v1/rest-auth/user/",
+        {
+          headers: {
+            Authorization: `bearer ${localStorage.getItem("authToken")}`
+          }
+        }
       )
       .then(resp => console.log(resp.data))
       .catch(err => console.log(err));
