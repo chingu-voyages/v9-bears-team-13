@@ -55,6 +55,7 @@
 }
 
 .ReactModal__Content {
+  width: 30%;
   opacity: 0;
   transform: translateY(-80px);
   transition: transform 350ms ease-out, opacity 600ms;
