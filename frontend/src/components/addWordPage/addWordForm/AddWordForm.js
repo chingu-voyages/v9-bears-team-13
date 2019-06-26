@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import { Col, Form, Input, Button } from "reactstrap";
+import { withRouter } from "react-router";
 
-const AddWordForm = () => {
+const AddWordForm = props => {
   const [word, setWord] = useState("");
 
   const onSubmitWord = e => {
     e.preventDefault();
-    console.log(word);
+
     setWord("");
   };
+
   return (
     <Col
       xs="12"
@@ -30,4 +32,4 @@ const AddWordForm = () => {
   );
 };
 
-export default AddWordForm;
+export default withRouter(AddWordForm);
