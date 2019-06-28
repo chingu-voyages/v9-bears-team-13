@@ -63,7 +63,7 @@ const Nav = props => {
         localStorage.setItem("authToken", resp.data.key);
         clearFields();
         setLoading(false);
-        setLogin(false);
+        setSignup(false);
         props.history.push("/add-word");
       })
       .catch(err => {
