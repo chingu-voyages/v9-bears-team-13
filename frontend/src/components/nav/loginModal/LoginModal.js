@@ -23,45 +23,48 @@ const LoginModal = props => {
           <h2 className="font-weight-light">Log In</h2>
         </div>
         <div className="content">
-          <input
-            value={props.username}
-            type="text"
-            className="form-control"
-            onChange={e => props.updateUsername(e.target.value)}
-            placeholder="Username"
-          />
-          <br />
-          <input
-            value={props.email}
-            type="email"
-            className="form-control"
-            onChange={e => props.updateEmail(e.target.value)}
-            placeholder="Email"
-          />
-          <br />
-          <input
-            value={props.password}
-            type="password"
-            className="form-control"
-            onChange={e => props.updatePassword(e.target.value)}
-            placeholder="Password"
-          />
+          <form onSubmit={e => props.handleLogin(e)}>
+            <input
+              value={props.username}
+              type="text"
+              className="form-control"
+              onChange={e => props.updateUsername(e.target.value)}
+              placeholder="Username"
+            />
 
-          <p style={{ color: "red" }}>
-            <em>{<small>{props.errorMsg}</small>}</em>
-          </p>
-          <br />
-          <button
-            onClick={() => props.handleLogin()}
-            className="btn btn-teal mb-4"
-          >
-            Log in{" "}
-            {props.isLoading && (
-              <div className="spinner-border spinner-border-sm " role="status">
-                <span className="sr-only">Loading...</span>
-              </div>
-            )}
-          </button>
+            <br />
+            <input
+              value={props.email}
+              type="email"
+              className="form-control"
+              onChange={e => props.updateEmail(e.target.value)}
+              placeholder="Email"
+            />
+
+            <br />
+            <input
+              value={props.password}
+              type="password"
+              className="form-control"
+              onChange={e => props.updatePassword(e.target.value)}
+              placeholder="Password"
+            />
+            <p style={{ color: "red" }}>
+              <em>{<small>{props.errorMsg}</small>}</em>
+            </p>
+            <br />
+            <button type="submit" className="btn btn-teal mb-4">
+              Log in{" "}
+              {props.isLoading && (
+                <div
+                  className="spinner-border spinner-border-sm "
+                  role="status"
+                >
+                  <span className="sr-only">Loading...</span>
+                </div>
+              )}
+            </button>
+          </form>
         </div>
       </ReactModal>
     </div>
