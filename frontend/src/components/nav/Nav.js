@@ -79,8 +79,13 @@ const Nav = props => {
 
   const handleLogout = () => {
     axios
-      .get(
-        "https://bears-api.andrew-horn-portfolio.life/api/v1/rest-auth/logout/"
+      .post(
+        "https://bears-api.andrew-horn-portfolio.life/api/v1/rest-auth/logout/",
+        {
+          headers: {
+            Authorization: `Token ${localStorage.getItem("authToken")}`
+          }
+        }
       )
       .then(resp => console.log(resp))
       .catch(err => console.log(err));
@@ -112,7 +117,7 @@ const Nav = props => {
       .then(resp => {
         localStorage.setItem("authToken", resp.data.key);
         clearFields();
-        setLoading(false);
+
         // document.location.reload();
         setLogin(false);
         props.history.push("/add-word");
