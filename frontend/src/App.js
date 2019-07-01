@@ -16,6 +16,8 @@ export const NameContext = React.createContext();
 
 function App() {
   const [name, updateName] = useState("");
+  const [pkValue, setValue] = useState(0);
+  const [words, setWords] = useState([]);
 
   const getUser = () => {
     axios
@@ -29,9 +31,25 @@ function App() {
       )
       .then(resp => {
         updateName(resp.data.username);
+        setValue(resp.data.pk);
       })
       .catch(err => console.log(err));
   };
+
+  const getWords = () => {
+    axios
+      .get("https://bears-api.andrew-horn-portfolio.life/api/v1/", {
+        headers: {
+          Authorization: `Token  ${localStorage.getItem("authToken")}`
+        }
+      })
+      .then(resp => {
+        setWords(resp.data);
+      })
+      .catch(err => console.log(err));
+  };
+
+  //const submitWord = () =>
 
   return (
     <div className="App">
@@ -42,8 +60,18 @@ function App() {
         component={AddWordPage}
         getUser={getUser}
         name={name}
+        getWords={getWords}
+        words={words}
+        pkValue={pkValue}
+        setWords={setWords}
       />
-      <PrivateRoute path="/word-list" component={WordListPage} />
+      <PrivateRoute
+        path="/word-list"
+        component={WordListPage}
+        words={words}
+        pkValue={pkValue}
+        setWords={setWords}
+      />
     </div>
   );
 }
