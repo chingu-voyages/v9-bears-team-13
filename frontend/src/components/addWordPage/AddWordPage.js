@@ -8,6 +8,7 @@ import AddWordForm from "./addWordForm/AddWordForm";
 const AddWordPage = props => {
   useEffect(() => {
     props.getUser();
+    props.getWords();
   });
 
   return (
@@ -17,7 +18,7 @@ const AddWordPage = props => {
       <Link to="/word-list">See word list</Link>
       <br />
       <Spaces />
-      <AddWordForm />
+      <AddWordForm {...props} />
     </>
   );
 };
