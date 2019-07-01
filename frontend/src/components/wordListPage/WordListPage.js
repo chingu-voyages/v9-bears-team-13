@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import WordTableRow from "./wordTableRow/WordTableRow";
 import isEditModeOn from "./isEditModeOn";
 
-const WordListPage = () => {
+const WordListPage = props => {
   const [wordList, setWordList] = useState(sampleWordData);
 
   const deleteWord = id => {
@@ -35,6 +35,8 @@ const WordListPage = () => {
     });
     setWordList(newWordList);
   };
+
+  console.log(props.words);
 
   return (
     <>
