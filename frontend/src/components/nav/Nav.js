@@ -44,7 +44,8 @@ const Nav = props => {
     setSignup(!signupIsOpen);
   };
 
-  const handleSignUp = () => {
+  const handleSignUp = e => {
+    e.preventDefault();
     setLoading(true);
     let obj = {
       username: username,
@@ -102,7 +103,8 @@ const Nav = props => {
     setEerrorMsg("");
   };
 
-  const handleLogin = () => {
+  const handleLogin = e => {
+    e.preventDefault();
     setLoading(true);
     let obj = {
       username: username,
