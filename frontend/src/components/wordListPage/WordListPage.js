@@ -139,25 +139,4 @@ const WordListPage = ({ words, ...props }) => {
   );
 };
 
-const sampleWordData = [
-  {
-    id: 0,
-    text: "老子",
-    timesSeen: 3,
-    editMode: false
-  },
-  {
-    id: 1,
-    text: "庄子",
-    timesSeen: 10,
-    editMode: false
-  },
-  {
-    id: 2,
-    text: "孔子",
-    timesSeen: 2,
-    editMode: false
-  }
-];
-
 export default WordListPage;
