@@ -1,15 +1,15 @@
 import React from "react";
 import { Input, Button } from "reactstrap";
 
-const EditRow = ({ id, text, timesSeen, toggleEdit, updateWord }) => {
+const EditRow = ({ id, author, text, timesSeen, toggleEdit, updateWord }) => {
   const onChangeText = e => {
     const text = e.target.value;
-    const word = { id, text, timesSeen };
+    const word = { id, author, text, timesSeen };
     updateWord(word);
   };
   const onChangeTimesSeen = e => {
     const timesSeen = e.target.value;
-    const word = { id, text, timesSeen };
+    const word = { id, author, text, timesSeen };
     updateWord(word);
   };
   return (
