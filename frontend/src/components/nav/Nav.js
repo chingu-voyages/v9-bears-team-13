@@ -91,6 +91,7 @@ const Nav = props => {
       .then(resp => console.log(resp))
       .catch(err => console.log(err));
     localStorage.removeItem("authToken");
+    props.wipeState();
     props.history.push("/");
   };
 

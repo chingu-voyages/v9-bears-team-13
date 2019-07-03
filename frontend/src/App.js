@@ -53,9 +53,15 @@ function App() {
       .catch(err => console.log(err));
   };
 
+  const wipeState = () => {
+    setUsername("");
+    setWords([]);
+    setValue(0);
+  };
+
   return (
     <div className="App">
-      <Nav name={username} />
+      <Nav name={username} wipeState={wipeState} />
       <Route exact path="/" component={Homepage} />
       <PrivateRoute
         path="/add-word"
