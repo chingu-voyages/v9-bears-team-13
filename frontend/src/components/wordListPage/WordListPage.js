@@ -118,7 +118,7 @@ const WordListPage = ({ words, ...props }) => {
                   )
                 )
               : wordList
-                  .sort((a, b) => a.timesSeen < b.timesSeen)
+                  .sort((a, b) => b.timesSeen - a.timesSeen)
                   .map(({ id, author, text, timesSeen, editMode }, index) => (
                     <WordTableRow
                       id={id}
