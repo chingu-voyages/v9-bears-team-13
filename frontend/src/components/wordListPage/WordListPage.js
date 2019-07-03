@@ -1,19 +1,41 @@
 import React, { useState } from "react";
 import { Col, Table } from "reactstrap";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 import WordTableRow from "./wordTableRow/WordTableRow";
 import isEditModeOn from "./isEditModeOn";
 
-const WordListPage = props => {
-  const [wordList, setWordList] = useState(sampleWordData);
+const WordListPage = ({ words, ...props }) => {
+  const [wordList, setWordList] = useState(
+    words.map(({ author, word, times_seen, ...rest }) => ({
+      editMode: false,
+      author,
+      text: word,
+      timesSeen: times_seen,
+      ...rest
+    }))
+  );
 
-  const deleteWord = id => {
+  const deleteWord = async id => {
     const newWordList = wordList.filter(word => word.id !== id);
     setWordList(newWordList);
+    try {
+      await axios.delete(
+        `https://bears-api.andrew-horn-portfolio.life/api/v1/${id}/`,
+        {
+          headers: {
+            Authorization: `Token  ${localStorage.getItem("authToken")}`
+          }
+        }
+      );
+      props.getWords();
+    } catch (e) {
+      console.log(e);
+    }
   };
 
-  const updateWord = ({ id, text, timesSeen }) => {
+  const updateWord = async ({ id, author, text, timesSeen }) => {
     const newWordList = wordList.map(word => {
       if (word.id === id) {
         word.text = text;
@@ -23,6 +45,24 @@ const WordListPage = props => {
       return word;
     });
     setWordList(newWordList);
+    try {
+      await axios.put(
+        `https://bears-api.andrew-horn-portfolio.life/api/v1/${id}/`,
+        {
+          author,
+          word: text,
+          times_seen: timesSeen
+        },
+        {
+          headers: {
+            Authorization: `Token  ${localStorage.getItem("authToken")}`
+          }
+        }
+      );
+      props.getWords();
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const toggleEdit = id => {
@@ -35,8 +75,6 @@ const WordListPage = props => {
     });
     setWordList(newWordList);
   };
-
-  console.log(props.words);
 
   return (
     <>
@@ -64,28 +102,34 @@ const WordListPage = props => {
           </thead>
           <tbody>
             {isEditModeOn(wordList)
-              ? wordList.map(({ id, text, timesSeen, editMode }) => (
-                  <WordTableRow
-                    id={id}
-                    text={text}
-                    timesSeen={timesSeen}
-                    deleteWord={deleteWord}
-                    toggleEdit={toggleEdit}
-                    editMode={editMode}
-                    updateWord={updateWord}
-                  />
-                ))
-              : wordList
-                  .sort((a, b) => a.timesSeen < b.timesSeen)
-                  .map(({ id, text, timesSeen, editMode }) => (
+              ? wordList.map(
+                  ({ id, author, text, timesSeen, editMode }, index) => (
                     <WordTableRow
                       id={id}
+                      author={author}
                       text={text}
                       timesSeen={timesSeen}
                       deleteWord={deleteWord}
                       toggleEdit={toggleEdit}
                       editMode={editMode}
                       updateWord={updateWord}
+                      key={index}
+                    />
+                  )
+                )
+              : wordList
+                  .sort((a, b) => a.timesSeen < b.timesSeen)
+                  .map(({ id, author, text, timesSeen, editMode }, index) => (
+                    <WordTableRow
+                      id={id}
+                      author={author}
+                      text={text}
+                      timesSeen={timesSeen}
+                      deleteWord={deleteWord}
+                      toggleEdit={toggleEdit}
+                      editMode={editMode}
+                      updateWord={updateWord}
+                      key={index}
                     />
                   ))}
           </tbody>
