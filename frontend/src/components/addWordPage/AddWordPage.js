@@ -1,16 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 
 import Spaces from "./spaces/Spaces";
 import AddWordForm from "./addWordForm/AddWordForm";
 
 const AddWordPage = props => {
-  useEffect(() => {
-    props.getUser();
-    props.getWords();
-  });
-
   return (
     <>
       <br />
