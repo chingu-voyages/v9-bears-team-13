@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Route } from "react-router-dom";
 
 import Homepage from "./components/homepage/Homepage";
@@ -15,9 +15,13 @@ import axios from "axios";
 export const NameContext = React.createContext();
 
 function App() {
-  const [name, updateName] = useState("");
+  const [username, setUsername] = useState("");
   const [pkValue, setValue] = useState(0);
   const [words, setWords] = useState([]);
+  useEffect(() => {
+    getUser();
+    getWords();
+  }, []);
 
   const getUser = () => {
     axios
@@ -30,7 +34,7 @@ function App() {
         }
       )
       .then(resp => {
-        updateName(resp.data.username);
+        setUsername(resp.data.username);
         setValue(resp.data.pk);
       })
       .catch(err => console.log(err));
@@ -49,28 +53,22 @@ function App() {
       .catch(err => console.log(err));
   };
 
-  //const submitWord = () =>
-
   return (
     <div className="App">
-      <Nav name={name} />
+      <Nav name={username} />
       <Route exact path="/" component={Homepage} />
       <PrivateRoute
         path="/add-word"
+        userId={pkValue}
         component={AddWordPage}
-        getUser={getUser}
-        name={name}
         getWords={getWords}
         words={words}
-        pkValue={pkValue}
-        setWords={setWords}
       />
       <PrivateRoute
         path="/word-list"
         component={WordListPage}
         words={words}
-        pkValue={pkValue}
-        setWords={setWords}
+        getWords={getWords}
       />
     </div>
   );
