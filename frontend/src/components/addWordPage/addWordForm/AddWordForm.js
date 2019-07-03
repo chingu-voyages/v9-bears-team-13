@@ -7,35 +7,36 @@ import axios from "axios";
 const AddWordForm = props => {
   const [word, setWord] = useState("");
 
-  const onSubmitWord = e => {
+  const onSubmitWord = async e => {
     e.preventDefault();
-    if (props.words.map(element => element.word).includes(word)) {
-      let result = props.words.filter(element => element.word === word);
-      result = result[0];
-      axios
-        .put(
-          `https://bears-api.andrew-horn-portfolio.life/api/v1/${result.id}/`,
+    if (props.words.map(prop => prop.word).includes(word)) {
+      const { id, author, word: text, times_seen } = props.words.filter(
+        prop => prop.word === word
+      )[0];
+      try {
+        axios.put(
+          `https://bears-api.andrew-horn-portfolio.life/api/v1/${id}/`,
           {
-            author: result.author,
-            word: result.word,
-            times_seen: result.times_seen + 1
+            author,
+            word: text,
+            times_seen: times_seen + 1
           },
           {
             headers: {
               Authorization: `Token  ${localStorage.getItem("authToken")}`
             }
           }
-        )
-        .then(resp => {
-          props.getWords();
-        })
-        .catch(err => console.log(err));
+        );
+        props.getWords();
+      } catch (e) {
+        console.log(e);
+      }
     } else {
-      axios
-        .post(
+      try {
+        await axios.post(
           `https://bears-api.andrew-horn-portfolio.life/api/v1/`,
           {
-            author: props.pkValue,
+            author: props.userId,
             word,
             times_seen: 1
           },
@@ -44,11 +45,11 @@ const AddWordForm = props => {
               Authorization: `Token  ${localStorage.getItem("authToken")}`
             }
           }
-        )
-        .then(resp => {
-          props.getWords();
-        })
-        .catch(err => console.log(err));
+        );
+        props.getWords();
+      } catch (e) {
+        console.log(e);
+      }
     }
     setWord("");
   };
