@@ -81,3 +81,40 @@
 .curve-button {
   border-radius: 5px;
 }
+
+.successful_greeting {
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.successful_greeting > p {
+  margin-bottom: 0;
+}
+
+.navbar-collapsee {
+  display: flex !important;
+  flex-basis: auto !important;
+  width: 100% !important;
+  flex-direction: row !important;
+}
+
+.nav-style {
+  width: 100%;
+  list-style: none;
+}
+
+@media only screen and (max-width: 992px) {
+  .nav-style {
+    width: 100%;
+    list-style: none;
+  }
+
+  .navbar-collapsee {
+    display: flex !important;
+    flex-basis: auto !important;
+    width: 50% !important;
+    flex-direction: row !important;
+  }
+}
