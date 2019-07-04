@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Col, Table } from "reactstrap";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -7,15 +7,27 @@ import WordTableRow from "./wordTableRow/WordTableRow";
 import isEditModeOn from "./isEditModeOn";
 
 const WordListPage = ({ words, ...props }) => {
-  const [wordList, setWordList] = useState(
-    words.map(({ author, word, times_seen, ...rest }) => ({
-      editMode: false,
-      author,
-      text: word,
-      timesSeen: times_seen,
-      ...rest
-    }))
-  );
+  const [wordList, setWordList] = useState([]);
+
+  useEffect(() => {
+    props.getWords();
+  }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (!wordList.length) {
+        setWordList(
+          words.map(({ author, word, times_seen, ...rest }) => ({
+            editMode: false,
+            author,
+            text: word,
+            timesSeen: times_seen,
+            ...rest
+          }))
+        );
+      }
+    }, 250);
+  });
 
   const deleteWord = async id => {
     const newWordList = wordList.filter(word => word.id !== id);
