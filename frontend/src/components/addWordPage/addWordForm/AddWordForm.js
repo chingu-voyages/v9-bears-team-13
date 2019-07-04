@@ -14,7 +14,7 @@ const AddWordForm = props => {
         prop => prop.word === word
       )[0];
       try {
-        axios.put(
+        await axios.put(
           `https://bears-api.andrew-horn-portfolio.life/api/v1/${id}/`,
           {
             author,
