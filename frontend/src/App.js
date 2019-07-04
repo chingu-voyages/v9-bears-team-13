@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Route } from "react-router-dom";
 
 import Homepage from "./components/homepage/Homepage";
@@ -18,14 +18,6 @@ function App() {
   const [username, setUsername] = useState("");
   const [pkValue, setValue] = useState(0);
   const [words, setWords] = useState([]);
-
-  // useEffect(() => {
-  //   if(localStorage.getItem('authToken')){
-  //      // getUser();
-  //      // getWords();
-
-  //   }
-  // }, []);
 
   const getUser = () => {
     axios
