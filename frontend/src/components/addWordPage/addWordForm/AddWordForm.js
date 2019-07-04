@@ -60,7 +60,6 @@ const AddWordForm = props => {
       sm={{ size: 8, offset: 2 }}
       md={{ size: 6, offset: 3 }}
       lg={{ size: 4, offset: 4 }}
-      xl={{ size: 2, offset: 5 }}
     >
       <Form onSubmit={onSubmitWord}>
         <h1 style={{ textAlign: "center" }}>Add a word</h1>
