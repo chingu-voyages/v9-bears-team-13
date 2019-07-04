@@ -6,7 +6,7 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Nav from "./components/nav/Nav";
 
-import { PrivateRoute } from "./helpers/privateRoute";
+import { PrivateRoute } from "./routes/privateRoute";
 import AddWordPage from "./components/addWordPage/AddWordPage";
 import WordListPage from "./components/wordListPage/WordListPage";
 
