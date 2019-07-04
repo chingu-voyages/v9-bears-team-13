@@ -34,6 +34,7 @@ const LoginModal = props => {
 
             <br />
             <input
+              autoComplete="username"
               value={props.email}
               type="email"
               className="form-control"
@@ -43,6 +44,7 @@ const LoginModal = props => {
 
             <br />
             <input
+              autoComplete="current-password"
               value={props.password}
               type="password"
               className="form-control"
