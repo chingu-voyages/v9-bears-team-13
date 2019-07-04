@@ -18,10 +18,14 @@ function App() {
   const [username, setUsername] = useState("");
   const [pkValue, setValue] = useState(0);
   const [words, setWords] = useState([]);
-  useEffect(() => {
-    getUser();
-    getWords();
-  }, []);
+
+  // useEffect(() => {
+  //   if(localStorage.getItem('authToken')){
+  //      // getUser();
+  //      // getWords();
+
+  //   }
+  // }, []);
 
   const getUser = () => {
     axios
@@ -61,7 +65,7 @@ function App() {
 
   return (
     <div className="App">
-      <Nav name={username} wipeState={wipeState} />
+      <Nav name={username} getUser={getUser} wipeState={wipeState} />
       <Route exact path="/" component={Homepage} />
       <PrivateRoute
         path="/add-word"
