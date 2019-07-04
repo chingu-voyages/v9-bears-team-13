@@ -1,9 +1,9 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import LoginModal from "./loginModal/LoginModal";
 import RegisterModal from "./registerModal/RegisterModal";
 import axios from "axios";
 import { withRouter } from "react-router";
-import { NameContext } from "../../App";
+import { Link } from "react-router-dom";
 import "./nav.css";
 
 const Nav = props => {
@@ -16,7 +16,9 @@ const Nav = props => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errorMsg, setEerrorMsg] = useState("");
 
-  const value = useContext(NameContext);
+  useEffect(() => {
+    if (localStorage.getItem("authToken")) props.getUser();
+  });
 
   const updateUsername = val => {
     setUsername(val);
@@ -64,6 +66,7 @@ const Nav = props => {
         localStorage.setItem("authToken", resp.data.key);
         clearFields();
         setLoading(false);
+        props.getUser();
         setSignup(false);
         props.history.push("/add-word");
       })
@@ -88,7 +91,7 @@ const Nav = props => {
           }
         }
       )
-      .then(resp => console.log(resp))
+      .then(resp => resp)
       .catch(err => console.log(err));
     localStorage.removeItem("authToken");
     props.wipeState();
@@ -123,6 +126,7 @@ const Nav = props => {
 
         // document.location.reload();
         setLogin(false);
+        props.getUser();
         props.history.push("/add-word");
         //console.log(props.history);
       })
@@ -143,15 +147,16 @@ const Nav = props => {
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <a className="navbar-brand" href="#!">
+        <Link
+          className="navbar-brand"
+          style={{ cursor: "pointer" }}
+          to="/add-word"
+        >
           WordList
-        </a>
+        </Link>
 
-        <div className="collapse navbar-collapse " id="navbarSupportedContent">
-          <ul
-            style={{ width: "100%" }}
-            className="navbar-nav mr-auto d-flex justify-content-end"
-          >
+        <div className="navbar-collapsee" id="navbarSupportedContent">
+          <ul className=" mr-auto d-flex justify-content-end nav-style">
             {!localStorage.getItem("authToken") ? (
               <>
                 {" "}
@@ -180,7 +185,9 @@ const Nav = props => {
               </>
             ) : (
               <>
-                <p>Hi, {props.name}</p>
+                <div className="successful_greeting">
+                  <p>Hi, {props.name}</p>
+                </div>
                 <button
                   onClick={() => handleLogout()}
                   type="button"
