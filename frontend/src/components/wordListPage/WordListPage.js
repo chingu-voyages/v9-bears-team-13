@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Col, Table } from "reactstrap";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -7,6 +7,7 @@ import WordTableRow from "./wordTableRow/WordTableRow";
 import isEditModeOn from "./isEditModeOn";
 
 const WordListPage = ({ words, ...props }) => {
+  console.log(words);
   const [wordList, setWordList] = useState(
     words.map(({ author, word, times_seen, ...rest }) => ({
       editMode: false,
@@ -16,6 +17,10 @@ const WordListPage = ({ words, ...props }) => {
       ...rest
     }))
   );
+
+  useEffect(() => {
+    props.getWords();
+  }, []);
 
   const deleteWord = async id => {
     const newWordList = wordList.filter(word => word.id !== id);
@@ -102,13 +107,13 @@ const WordListPage = ({ words, ...props }) => {
           </thead>
           <tbody>
             {isEditModeOn(wordList)
-              ? wordList.map(
-                  ({ id, author, text, timesSeen, editMode }, index) => (
+              ? words.map(
+                  ({ id, author, word, times_seen, editMode }, index) => (
                     <WordTableRow
                       id={id}
                       author={author}
-                      text={text}
-                      timesSeen={timesSeen}
+                      text={word}
+                      timesSeen={times_seen}
                       deleteWord={deleteWord}
                       toggleEdit={toggleEdit}
                       editMode={editMode}
@@ -117,14 +122,14 @@ const WordListPage = ({ words, ...props }) => {
                     />
                   )
                 )
-              : wordList
-                  .sort((a, b) => b.timesSeen - a.timesSeen)
-                  .map(({ id, author, text, timesSeen, editMode }, index) => (
+              : words
+                  .sort((a, b) => a.timesSeen < b.timesSeen)
+                  .map(({ id, author, word, times_seen, editMode }, index) => (
                     <WordTableRow
                       id={id}
                       author={author}
-                      text={text}
-                      timesSeen={timesSeen}
+                      text={word}
+                      timesSeen={times_seen}
                       deleteWord={deleteWord}
                       toggleEdit={toggleEdit}
                       editMode={editMode}
