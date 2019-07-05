@@ -18,8 +18,10 @@ function App(props) {
   const [words, setWords] = useState([]);
 
   useEffect(() => {
-    getWords();
-  }, []);
+    if (username && (!words || !words.length)) {
+      getWords();
+    }
+  }, [username]);
 
   useEffect(() => {
     if (localStorage.getItem("authToken") && props.history.location.pathname === "/") {
