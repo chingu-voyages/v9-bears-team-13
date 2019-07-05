@@ -39,7 +39,7 @@ function App(props) {
       "local",
       JSON.stringify({ username, pkValue, words })
     );
-  }, [username, pkValue, words]);
+  }, [username, pkValue]);
 
   const getUser = () => {
     axios
