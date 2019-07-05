@@ -5,9 +5,10 @@ import axios from "axios";
 
 import WordTableRow from "./wordTableRow/WordTableRow";
 import isEditModeOn from "./isEditModeOn";
+import getWordsFromApp from "./wordTableRow/getWordsFromApp";
 
 const WordListPage = ({ words, ...props }) => {
-  const [wordList, setWordList] = useState([]);
+  const [wordList, setWordList] = useState(getWordsFromApp(words));
 
   useEffect(() => {
     props.getWords();
@@ -17,13 +18,7 @@ const WordListPage = ({ words, ...props }) => {
     setTimeout(() => {
       if (!wordList.length) {
         setWordList(
-          words.map(({ author, word, times_seen, ...rest }) => ({
-            editMode: false,
-            author,
-            text: word,
-            timesSeen: times_seen,
-            ...rest
-          }))
+          getWordsFromApp(words)
         );
       }
     }, 250);
