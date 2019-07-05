@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Route, withRouter } from "react-router-dom";
-
-import Homepage from "./components/homepage/Homepage";
-import "./App.css";
+import { Route } from "react-router-dom";
+import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Nav from "./components/nav/Nav";
 
+import "./App.css";
+import Homepage from "./components/homepage/Homepage";
+import Nav from "./components/nav/Nav";
 import { PrivateRoute } from "./routes/privateRoute";
 import AddWordPage from "./components/addWordPage/AddWordPage";
 import WordListPage from "./components/wordListPage/WordListPage";
-
-import axios from "axios";
 
 export const NameContext = React.createContext();
 
@@ -22,6 +21,24 @@ function App(props) {
   useEffect(() => {
     if (localStorage.getItem("authToken")) props.history.push("/add-word");
   }, []);
+
+  useEffect(() => {
+    if (
+      !username &&
+      !pkValue &&
+      (!words || !words.length) &&
+      localStorage.getItem("local")
+    ) {
+      const { username, pkValue, words } = localStorage.getItem("local");
+      setUsername(username);
+      setValue(pkValue);
+      setWords(words);
+    }
+    return localStorage.setItem(
+      "local",
+      JSON.stringify({ username, pkValue, words })
+    );
+  });
 
   const getUser = () => {
     axios
@@ -57,6 +74,7 @@ function App(props) {
     setUsername("");
     setWords([]);
     setValue(0);
+    localStorage.clear();
   };
 
   return (
