@@ -18,7 +18,9 @@ function App(props) {
   const [words, setWords] = useState([]);
 
   useEffect(() => {
-    if (localStorage.getItem("authToken")) props.history.push("/add-word");
+    if (localStorage.getItem("authToken") && props.history.location === "/") {
+      props.history.push("/add-word");
+    }
   }, []);
 
   useEffect(() => {
