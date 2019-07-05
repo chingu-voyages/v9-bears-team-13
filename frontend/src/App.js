@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Route, withRouter } from "react-router-dom";
-import { Route } from "react-router-dom";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 
