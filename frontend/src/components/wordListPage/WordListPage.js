@@ -11,10 +11,6 @@ const WordListPage = ({ words, ...props }) => {
   const [wordList, setWordList] = useState(getWordsFromApp(words));
 
   useEffect(() => {
-    props.getWords();
-  }, []);
-
-  useEffect(() => {
     setTimeout(() => {
       if (!wordList.length) {
         setWordList(getWordsFromApp(words));
