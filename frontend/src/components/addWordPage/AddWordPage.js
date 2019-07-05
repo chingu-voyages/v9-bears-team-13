@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import Spaces from "./spaces/Spaces";
 import AddWordForm from "./addWordForm/AddWordForm";
 
 const AddWordPage = props => {
@@ -11,7 +10,9 @@ const AddWordPage = props => {
       <br />
       <Link to="/word-list">See word list</Link>
       <br />
-      <Spaces />
+      <br />
+      <br />
+      <br />
       <AddWordForm {...props} />
     </>
   );
