@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Route } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Route, withRouter } from "react-router-dom";
 
 import Homepage from "./components/homepage/Homepage";
 import "./App.css";
@@ -14,10 +14,14 @@ import axios from "axios";
 
 export const NameContext = React.createContext();
 
-function App() {
+function App(props) {
   const [username, setUsername] = useState("");
   const [pkValue, setValue] = useState(0);
   const [words, setWords] = useState([]);
+
+  useEffect(() => {
+    if (localStorage.getItem("authToken")) props.history.push("/add-word");
+  }, []);
 
   const getUser = () => {
     axios
@@ -76,4 +80,4 @@ function App() {
   );
 }
 
-export default App;
+export default withRouter(App);
