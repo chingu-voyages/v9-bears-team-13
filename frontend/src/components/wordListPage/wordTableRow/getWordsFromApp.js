@@ -1,4 +1,4 @@
-const getWordsFromApp = words => (
+const getWordsFromApp = (words = []) => (
   words.map(({ author, word, times_seen, ...rest }) => ({
     editMode: false,
     author,
