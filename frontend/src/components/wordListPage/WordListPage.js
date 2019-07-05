@@ -91,7 +91,8 @@ const WordListPage = ({ words, ...props }) => {
         md={{ size: 6, offset: 3 }}
         lg={{ size: 4, offset: 4 }}
       >
-        <h2>Word list</h2>
+        <h2>Word List</h2>
+        
         <Table>
           <thead>
             <tr>
