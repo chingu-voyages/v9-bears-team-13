@@ -160,8 +160,8 @@ const Nav = props => {
             {!localStorage.getItem("authToken") ? (
               <>
                 {" "}
-                <li className="nav-item ">
-                  <Link className="nav-link">
+                <div className="authentication_items">
+                  <li className="nav-item ">
                     <button
                       onClick={() => toggleLogin()}
                       type="button"
@@ -169,10 +169,8 @@ const Nav = props => {
                     >
                       Login
                     </button>
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link">
+                  </li>
+                  <li className="nav-item">
                     <button
                       onClick={() => toggleSignup()}
                       type="button"
@@ -180,8 +178,8 @@ const Nav = props => {
                     >
                       Signup
                     </button>
-                  </Link>
-                </li>
+                  </li>
+                </div>
               </>
             ) : (
               <>
