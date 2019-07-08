@@ -57,7 +57,7 @@ const Nav = props => {
     setTimeout(() => {
       setEerrorMsg("");
       setLoading(false);
-    }, 10000);
+    }, 5000);
     return;
   };
 
