@@ -9,6 +9,7 @@ import Nav from "./components/nav/Nav";
 import { PrivateRoute } from "./routes/privateRoute";
 import AddWordPage from "./components/addWordPage/AddWordPage";
 import WordListPage from "./components/wordListPage/WordListPage";
+import Settings from "./components/settings/Settings";
 
 export const NameContext = React.createContext();
 
@@ -95,6 +96,7 @@ function App(props) {
         words={words}
         getWords={getWords}
       />
+      <PrivateRoute path="/settings" component={Settings} name={username} />
     </div>
   );
 }
