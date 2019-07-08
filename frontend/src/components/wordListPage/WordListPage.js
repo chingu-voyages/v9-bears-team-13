@@ -11,16 +11,10 @@ const WordListPage = ({ words, ...props }) => {
   const [wordList, setWordList] = useState(getWordsFromApp(words));
 
   useEffect(() => {
-    props.getWords();
-  }, []);
-
-  useEffect(() => {
-    setTimeout(() => {
-      if (!wordList.length) {
-        setWordList(getWordsFromApp(words));
-      }
-    }, 250);
-  });
+    if (!wordList.length) {
+      setWordList(getWordsFromApp(words));
+    }
+  }, [words]);
 
   const deleteWord = async id => {
     const newWordList = wordList.filter(word => word.id !== id);
@@ -95,7 +89,8 @@ const WordListPage = ({ words, ...props }) => {
         md={{ size: 6, offset: 3 }}
         lg={{ size: 4, offset: 4 }}
       >
-        <h2>Word list</h2>
+        <h2>Word List</h2>
+        
         <Table>
           <thead>
             <tr>

@@ -20,7 +20,13 @@ function App(props) {
   const [words, setWords] = useState([]);
 
   useEffect(() => {
-    if (localStorage.getItem("authToken") && props.history.location === "/") {
+    if (username && (!words || !words.length)) {
+      getWords();
+    }
+  }, [username]);
+
+  useEffect(() => {
+    if (localStorage.getItem("authToken") && props.history.location.pathname === "/") {
       props.history.push("/add-word");
     }
   }, [props.history]);
@@ -41,7 +47,7 @@ function App(props) {
       "local",
       JSON.stringify({ username, pkValue, words })
     );
-  }, [username, pkValue, words]);
+  }, [username, pkValue]);
 
   const getUser = () => {
     axios

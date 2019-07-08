@@ -5,10 +5,11 @@ import { withRouter } from "react-router";
 import axios from "axios";
 
 const AddWordForm = props => {
-  const [word, setWord] = useState("");
+  let [word, setWord] = useState("");
 
   const onSubmitWord = async e => {
     e.preventDefault();
+    word = word.trim();
     if (props.words.map(prop => prop.word).includes(word)) {
       const { id, author, word: text, times_seen } = props.words.filter(
         prop => prop.word === word
