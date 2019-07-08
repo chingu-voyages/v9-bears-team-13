@@ -1,14 +1,19 @@
 import React, { useState } from "react";
-import { Col, Form, Input, Button } from "reactstrap";
+import { Col, Form, Input, Button, Modal, ModalBody } from "reactstrap";
 import { withRouter } from "react-router";
 
 import axios from "axios";
 
 const AddWordForm = props => {
   let [word, setWord] = useState("");
+  const [successModal, setSuccessModal] = useState(false);
 
   const onSubmitWord = async e => {
     e.preventDefault();
+    setSuccessModal(true);
+    setTimeout(() => {
+      setSuccessModal(false);
+    }, 600);
     word = word.trim();
     if (props.words.map(prop => prop.word).includes(word)) {
       const { id, author, word: text, times_seen } = props.words.filter(
@@ -62,6 +67,11 @@ const AddWordForm = props => {
       md={{ size: 6, offset: 3 }}
       lg={{ size: 4, offset: 4 }}
     >
+    <Modal isOpen={successModal} centered={true} fade={false} backdrop={false}>
+      <ModalBody style={{ fontSize: '1.5em', textAlign: 'center' }}>
+        ok :-)
+      </ModalBody>
+    </Modal>
       <Form onSubmit={onSubmitWord}>
         <h1 style={{ textAlign: "center" }}>Add a word</h1>
         <br />
