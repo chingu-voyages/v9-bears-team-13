@@ -23,9 +23,9 @@ const LoginModal = props => {
           <h2 className="font-weight-light">Log In</h2>
         </div>
         <div className="content">
-          <form onSubmit={e => props.handleLogin(e)}>
+          <form onSubmit={e => props.handleLogin(e)} autoComplete="on">
             <input
-              autoComplete="username"
+              autoComplete="name"
               value={props.username}
               type="text"
               className="form-control"
@@ -35,7 +35,7 @@ const LoginModal = props => {
 
             <br />
             <input
-              autoComplete="current-password"
+              autoComplete="password"
               value={props.password}
               type="password"
               className="form-control"

@@ -151,11 +151,7 @@ const Nav = props => {
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <Link
-          className="navbar-brand"
-          style={{ cursor: "pointer" }}
-          to="/add-word"
-        >
+        <Link className="navbar-brand" to="/add-word">
           WordList
         </Link>
 
