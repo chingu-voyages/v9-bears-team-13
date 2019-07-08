@@ -1,5 +1,6 @@
 import React from "react";
 import ReactModal from "react-modal";
+import { Link } from "react-router-dom";
 
 const LoginModal = props => {
   return (
@@ -42,6 +43,15 @@ const LoginModal = props => {
               onChange={e => props.updatePassword(e.target.value)}
               placeholder="Password"
             />
+            <p
+              onClick={() => props.handleClick()}
+              style={{ color: "blue", cursor: "pointer" }}
+            >
+              <em>
+                <small>forgot password?</small>
+              </em>
+            </p>
+
             <p style={{ color: "red" }}>
               <em>{<small>{props.errorMsg}</small>}</em>
             </p>

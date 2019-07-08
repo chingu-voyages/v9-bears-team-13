@@ -46,6 +46,12 @@ const Nav = props => {
     setSignup(!signupIsOpen);
   };
 
+  const handleClick = () => {
+    clearFields();
+    setLogin(!loginIsOpen);
+    props.history.push("/resetpassword");
+  };
+
   const handleError = str => {
     setEerrorMsg(str);
     setTimeout(() => {
@@ -210,6 +216,7 @@ const Nav = props => {
         updatePassword={updatePassword}
         handleLogin={handleLogin}
         errorMsg={errorMsg}
+        handleClick={handleClick}
       />
       <RegisterModal
         isLoading={loading}
