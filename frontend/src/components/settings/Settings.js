@@ -18,19 +18,20 @@ const Settings = props => {
     setNewPassword(val);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = e => {
+    e.preventDefault();
     setLoading(true);
     axios
       .post(
-        "/api/v1/rest-auth/password/change/",
+        "https://bears-api.andrew-horn-portfolio.life/api/v1/rest-auth/password/change/",
+        {
+          new_password1: password,
+          new_password2: newPassword
+        },
         {
           headers: {
             Authorization: `Token  ${localStorage.getItem("authToken")}`
           }
-        },
-        {
-          new_password1: password,
-          new_password2: newPassword
         }
       )
       .then(resp => {
@@ -42,10 +43,14 @@ const Settings = props => {
         }, 10000);
       })
       .catch(err => {
+        console.log(err);
         setErrMsg("something went wrong, please try again");
+
         setTimeout(() => {
           setMessage("");
-        }, 10000);
+          setErrMsg("");
+          setLoading(false);
+        }, 7000);
       });
   };
   return (
@@ -57,20 +62,11 @@ const Settings = props => {
         <p style={{ color: "green", marginTop: "0" }}>
           <em>{<small>{message}</small>}</em>
         </p>
-        <input
-          disabled
-          autoComplete="off"
-          value={props.name}
-          type="text"
-          className="form-control"
-        />
-
-        <br />
 
         <input
-          autoComplete="off"
+          autoComplete="password"
           value={password}
-          type="text"
+          type="password"
           className="form-control"
           placeholder="New Password"
           onChange={e => updatePassword(e.target.value)}
@@ -78,7 +74,6 @@ const Settings = props => {
 
         <br />
         <input
-          autoComplete="off"
           autoComplete="password"
           value={newPassword}
           type="password"

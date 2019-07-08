@@ -1,6 +1,5 @@
 import React from "react";
 import ReactModal from "react-modal";
-import { Link } from "react-router-dom";
 
 const LoginModal = props => {
   return (
