@@ -25,21 +25,12 @@ const LoginModal = props => {
         <div className="content">
           <form onSubmit={e => props.handleLogin(e)}>
             <input
+              autoComplete="username"
               value={props.username}
               type="text"
               className="form-control"
               onChange={e => props.updateUsername(e.target.value)}
               placeholder="Username"
-            />
-
-            <br />
-            <input
-              autoComplete="username"
-              value={props.email}
-              type="email"
-              className="form-control"
-              onChange={e => props.updateEmail(e.target.value)}
-              placeholder="Email"
             />
 
             <br />

@@ -122,7 +122,6 @@ const Nav = props => {
     setLoading(true);
     let obj = {
       username: username,
-      email: email,
       password: password
     };
     axios
