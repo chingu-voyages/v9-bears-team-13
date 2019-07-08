@@ -46,15 +46,21 @@ const Nav = props => {
     setSignup(!signupIsOpen);
   };
 
+  const handleError = str => {
+    setEerrorMsg(str);
+    setTimeout(() => {
+      setEerrorMsg("");
+      setLoading(false);
+    }, 10000);
+    return;
+  };
+
   const handleSignUp = e => {
     e.preventDefault();
     setLoading(true);
 
     if (password !== confirmPassword) {
-      setEerrorMsg("Passwords do not match");
-      setTimeout(() => {
-        setEerrorMsg("");
-      }, 10000);
+      handleError("Passwords do not match");
       return;
     }
     let obj = {
@@ -79,13 +85,9 @@ const Nav = props => {
         props.history.push("/add-word");
       })
       .catch(err => {
-        setEerrorMsg(
+        handleError(
           "Something went wrong, please comfirm your email and password then try again"
         );
-        setLoading(false);
-        setTimeout(() => {
-          setEerrorMsg("");
-        }, 10000);
       });
   };
 
@@ -141,14 +143,9 @@ const Nav = props => {
       .catch(err => {
         //  console.log(err);
 
-        setEerrorMsg(
+        handleError(
           "Something went wrong, please comfirm your email and password then try again"
         );
-        setLoading(false);
-
-        setTimeout(() => {
-          setEerrorMsg("");
-        }, 10000);
       });
   };
 
