@@ -46,9 +46,29 @@ const Nav = props => {
     setSignup(!signupIsOpen);
   };
 
+  const handleClick = () => {
+    clearFields();
+    setLogin(!loginIsOpen);
+    props.history.push("/resetpassword");
+  };
+
+  const handleError = str => {
+    setEerrorMsg(str);
+    setTimeout(() => {
+      setEerrorMsg("");
+      setLoading(false);
+    }, 10000);
+    return;
+  };
+
   const handleSignUp = e => {
     e.preventDefault();
     setLoading(true);
+
+    if (password !== confirmPassword) {
+      handleError("Passwords do not match");
+      return;
+    }
     let obj = {
       username: username,
       email: email,
@@ -71,13 +91,9 @@ const Nav = props => {
         props.history.push("/add-word");
       })
       .catch(err => {
-        setEerrorMsg(
+        handleError(
           "Something went wrong, please comfirm your email and password then try again"
         );
-        setLoading(false);
-        setTimeout(() => {
-          setEerrorMsg("");
-        }, 10000);
       });
   };
 
@@ -112,7 +128,6 @@ const Nav = props => {
     setLoading(true);
     let obj = {
       username: username,
-      email: email,
       password: password
     };
     axios
@@ -133,25 +148,16 @@ const Nav = props => {
       .catch(err => {
         //  console.log(err);
 
-        setEerrorMsg(
+        handleError(
           "Something went wrong, please comfirm your email and password then try again"
         );
-        setLoading(false);
-
-        setTimeout(() => {
-          setEerrorMsg("");
-        }, 10000);
       });
   };
 
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <Link
-          className="navbar-brand"
-          style={{ cursor: "pointer" }}
-          to="/add-word"
-        >
+        <Link className="navbar-brand" to="/add-word">
           WordList
         </Link>
 
@@ -160,8 +166,8 @@ const Nav = props => {
             {!localStorage.getItem("authToken") ? (
               <>
                 {" "}
-                <li className="nav-item ">
-                  <Link className="nav-link">
+                <div className="authentication_items">
+                  <li className="nav-item ">
                     <button
                       onClick={() => toggleLogin()}
                       type="button"
@@ -169,10 +175,8 @@ const Nav = props => {
                     >
                       Login
                     </button>
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link">
+                  </li>
+                  <li className="nav-item">
                     <button
                       onClick={() => toggleSignup()}
                       type="button"
@@ -180,8 +184,8 @@ const Nav = props => {
                     >
                       Signup
                     </button>
-                  </Link>
-                </li>
+                  </li>
+                </div>
               </>
             ) : (
               <>
@@ -212,6 +216,7 @@ const Nav = props => {
         updatePassword={updatePassword}
         handleLogin={handleLogin}
         errorMsg={errorMsg}
+        handleClick={handleClick}
       />
       <RegisterModal
         isLoading={loading}

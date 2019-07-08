@@ -23,8 +23,9 @@ const LoginModal = props => {
           <h2 className="font-weight-light">Log In</h2>
         </div>
         <div className="content">
-          <form onSubmit={e => props.handleLogin(e)}>
+          <form onSubmit={e => props.handleLogin(e)} autoComplete="on">
             <input
+              autoComplete="name"
               value={props.username}
               type="text"
               className="form-control"
@@ -34,23 +35,22 @@ const LoginModal = props => {
 
             <br />
             <input
-              autoComplete="username"
-              value={props.email}
-              type="email"
-              className="form-control"
-              onChange={e => props.updateEmail(e.target.value)}
-              placeholder="Email"
-            />
-
-            <br />
-            <input
-              autoComplete="current-password"
+              autoComplete="password"
               value={props.password}
               type="password"
               className="form-control"
               onChange={e => props.updatePassword(e.target.value)}
               placeholder="Password"
             />
+            <p
+              onClick={() => props.handleClick()}
+              style={{ color: "blue", cursor: "pointer" }}
+            >
+              <em>
+                <small>forgot password?</small>
+              </em>
+            </p>
+
             <p style={{ color: "red" }}>
               <em>{<small>{props.errorMsg}</small>}</em>
             </p>
