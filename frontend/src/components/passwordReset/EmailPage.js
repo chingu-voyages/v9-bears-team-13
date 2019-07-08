@@ -11,19 +11,20 @@ const EmailPage = () => {
     setEmail(val);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = e => {
+    e.preventDefault();
     setLoading(true);
     setMessage("");
     axios
       .post(
-        "/api/v1/rest-auth/password/reset/",
+        "https://bears-api.andrew-horn-portfolio.life/api/v1/rest-auth/password/reset/",
+        {
+          email
+        },
         {
           headers: {
             Authorization: `Token  ${localStorage.getItem("authToken")}`
           }
-        },
-        {
-          email
         }
       )
       .then(resp => {
@@ -38,7 +39,7 @@ const EmailPage = () => {
         setErrMsg("something went wrong, please try again");
         setTimeout(() => {
           setMessage("");
-        }, 10000);
+        }, 7000);
       });
   };
 
