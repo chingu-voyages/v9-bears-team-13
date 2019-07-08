@@ -21,12 +21,20 @@ const Settings = props => {
   const handleSubmit = () => {
     setLoading(true);
     axios
-      .get("/api/v1/rest-auth/password/change/", {
-        headers: {
-          Authorization: `Token  ${localStorage.getItem("authToken")}`
+      .post(
+        "/api/v1/rest-auth/password/change/",
+        {
+          headers: {
+            Authorization: `Token  ${localStorage.getItem("authToken")}`
+          }
+        },
+        {
+          new_password1: password,
+          new_password2: newPassword
         }
-      })
+      )
       .then(resp => {
+        console.log(resp.data);
         setLoading(false);
         setMessage("Password successfully changed");
         setTimeout(() => {
@@ -64,7 +72,7 @@ const Settings = props => {
           value={password}
           type="text"
           className="form-control"
-          placeholder="Old Password"
+          placeholder="New Password"
           onChange={e => updatePassword(e.target.value)}
         />
 
@@ -75,7 +83,7 @@ const Settings = props => {
           value={newPassword}
           type="password"
           className="form-control"
-          placeholder="New Password"
+          placeholder="Comfirm New Password"
           onChange={e => updateNewPassword(e.target.value)}
         />
         <p style={{ color: "red" }}>
