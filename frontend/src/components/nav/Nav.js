@@ -49,6 +49,14 @@ const Nav = props => {
   const handleSignUp = e => {
     e.preventDefault();
     setLoading(true);
+
+    if (password !== confirmPassword) {
+      setEerrorMsg("Passwords do not match");
+      setTimeout(() => {
+        setEerrorMsg("");
+      }, 10000);
+      return;
+    }
     let obj = {
       username: username,
       email: email,
