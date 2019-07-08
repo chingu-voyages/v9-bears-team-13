@@ -20,6 +20,10 @@ const Settings = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    if (password !== newPassword) {
+      setErrMsg("Passwords do not match");
+      return;
+    }
     setLoading(true);
     axios
       .post(
