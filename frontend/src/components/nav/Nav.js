@@ -192,6 +192,13 @@ const Nav = props => {
                 <div className="successful_greeting">
                   <p>Hi, {props.name}</p>
                 </div>
+                <Link
+                  className="successful_greeting"
+                  style={{ color: "black" }}
+                  to="/settings"
+                >
+                  settings
+                </Link>
                 <button
                   onClick={() => handleLogout()}
                   type="button"
