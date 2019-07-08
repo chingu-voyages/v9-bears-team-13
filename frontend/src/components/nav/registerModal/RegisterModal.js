@@ -25,6 +25,7 @@ const RegisterModal = props => {
         <div className="content">
           <form onSubmit={e => props.handleSignUp(e)}>
             <input
+              autoComplete="name"
               value={props.name}
               type="text"
               className="form-control"
@@ -33,6 +34,7 @@ const RegisterModal = props => {
             />
             <br />
             <input
+              autoComplete="email"
               value={props.email}
               type="email"
               className="form-control"
@@ -41,6 +43,7 @@ const RegisterModal = props => {
             />
             <br />
             <input
+              autoComplete="password"
               value={props.password}
               type="password"
               className="form-control"
@@ -49,6 +52,7 @@ const RegisterModal = props => {
             />
             <br />
             <input
+              autoComplete="off"
               value={props.confirmPassword}
               type="password"
               className="form-control"

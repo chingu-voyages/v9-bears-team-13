@@ -9,6 +9,8 @@ import Nav from "./components/nav/Nav";
 import { PrivateRoute } from "./routes/privateRoute";
 import AddWordPage from "./components/addWordPage/AddWordPage";
 import WordListPage from "./components/wordListPage/WordListPage";
+import Settings from "./components/settings/Settings";
+import EmailPage from "./components/passwordReset/EmailPage";
 
 export const NameContext = React.createContext();
 
@@ -88,6 +90,7 @@ function App(props) {
     <div className="App">
       <Nav name={username} getUser={getUser} wipeState={wipeState} />
       <Route exact path="/" component={Homepage} />
+      <Route exact path="/resetpassword" component={EmailPage} />
       <PrivateRoute
         path="/add-word"
         userId={pkValue}
@@ -95,12 +98,14 @@ function App(props) {
         getWords={getWords}
         words={words}
       />
+
       <PrivateRoute
         path="/word-list"
         component={WordListPage}
         words={words}
         getWords={getWords}
       />
+      <PrivateRoute path="/settings" component={Settings} name={username} />
     </div>
   );
 }
