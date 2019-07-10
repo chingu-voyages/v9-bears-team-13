@@ -16,6 +16,7 @@ const EmailPage = () => {
     setLoading(true);
     setMessage("");
     if (!email.includes("@")) {
+      setErrMsg("please comfirm your email address");
       setLoading(false);
       return;
     }
@@ -60,7 +61,7 @@ const EmailPage = () => {
         <input
           autoComplete="off"
           value={email}
-          type="text"
+          type="email"
           className="form-control"
           onChange={e => updateEmail(e.target.value)}
           placeholder="enter email"
