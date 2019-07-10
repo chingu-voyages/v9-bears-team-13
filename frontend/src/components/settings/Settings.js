@@ -41,6 +41,8 @@ const Settings = props => {
       .then(resp => {
         console.log(resp.data);
         setLoading(false);
+        setPassword("");
+        setNewPassword("");
         setMessage("Password successfully changed");
         setTimeout(() => {
           setMessage("");

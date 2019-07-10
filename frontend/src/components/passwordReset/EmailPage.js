@@ -15,6 +15,11 @@ const EmailPage = () => {
     e.preventDefault();
     setLoading(true);
     setMessage("");
+    if (!email.includes("@")) {
+      setLoading(false);
+      return;
+      a;
+    }
     axios
       .post(
         "https://bears-api.andrew-horn-portfolio.life/api/v1/rest-auth/password/reset/",
@@ -30,6 +35,7 @@ const EmailPage = () => {
       .then(resp => {
         console.log(resp.data);
         setLoading(false);
+        setEmail("");
         setMessage("Password reset email sent");
         setTimeout(() => {
           setMessage("");
