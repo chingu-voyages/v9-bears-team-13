@@ -4,8 +4,8 @@ import "./Homepage.css";
 
 const Homepage = () => {
   return (
-    <div>
-      <div className="container">
+    <div className="full_height">
+      <div className="container image-center">
         <div className="wordlist_homepage">
           <h3>Welcome</h3>
           <img

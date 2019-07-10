@@ -124,6 +124,10 @@
   font-weight: 600;
 }
 
+.move-right {
+  margin-right: 5px;
+}
+
 @media only screen and (max-width: 992px) {
   .nav-style {
     width: 100%;

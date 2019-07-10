@@ -167,7 +167,7 @@ const Nav = props => {
               <>
                 {" "}
                 <div className="authentication_items">
-                  <li className="nav-item ">
+                  <li className="nav-item move-right ">
                     <button
                       onClick={() => toggleLogin()}
                       type="button"
