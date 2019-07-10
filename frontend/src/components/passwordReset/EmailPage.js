@@ -18,7 +18,6 @@ const EmailPage = () => {
     if (!email.includes("@")) {
       setLoading(false);
       return;
-      a;
     }
     axios
       .post(
