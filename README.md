@@ -4,10 +4,20 @@ Automate your vocab word list creation. Anytime you read a word in your target l
 
 ## How to use
 
-clone the repo and then do
+Clone the repo, navigate into the created folder, install the dependencies, and then run the devserver to run the frontend using the following commands:
 ```
+$ git clone git@github.com:chingu-voyages/v9-bears-team-13.git
+$ cd v9-bears-team-13
 $ npm i
 $ npm start
 ```
-inside the frontend folder.
+
+You can get the most updated version of the backend from [here](https://github.com/sophyphreak/wordlist-app-api). Clone the repo, start the pipenv shell, install the dependencies, and then run the devserver.
+```
+$ git clone git@github.com:sophyphreak/wordlist-app-api.git
+$ cd wordlist-app-api
+$ pipenv shell
+$ pipenv install
+$ python manage.py runserver
+```
 
