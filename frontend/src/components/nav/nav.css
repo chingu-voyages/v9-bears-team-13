@@ -9,17 +9,22 @@
 
 .btn-teal {
   color: white;
-  background-color: #5bcfc6;
+  /* background-color: #5bcfc6; */
+  background-color: #ea8889;
 }
 
 .btn-teal:hover {
   color: white;
-  background-color: #4fc1b8;
+
+  /* background-color: #4fc1b8; */
+  background-color: #211f1f;
 }
 
 .modal-header-section {
   border-radius: 0;
-  background-image: linear-gradient(to right, #5bcfc6 5%, #6dd1cc 55%);
+  /* background-image: linear-gradient(to right, #5bcfc6 5%, #6dd1cc 55%); */
+  /* background-image: rgb(238, 29, 36); */
+  background-color: #ea8889;
   text-align: right;
   padding: 15px 0 15px 0;
 }
