@@ -150,6 +150,5 @@ SWAGGER_SETTINGS = {
 }
 
 CORS_ORIGIN_WHITELIST = [
-    "http://localhost:3000",
-    "https://v9-bears-team-13.netlify.com/"
+    "https://v9-bears-team-13.netlify.app/"
 ]
